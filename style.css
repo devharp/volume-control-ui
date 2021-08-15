@@ -1,0 +1,190 @@
+:root{
+    --btn-dec-stroke: #000;
+    --btn-dec-border-color: #ddd;
+    --btn-dec-background-color: white;
+    --btn-dec-stroke-active: white;
+    --btn-dec-border-color-active: crimson;
+    --btn-dec-background-color-active: crimson;
+    
+    --btn-inc-stroke: #000;
+    --btn-inc-border-color: #ddd;
+    --btn-inc-background-color: white;
+    --btn-inc-stroke-active: white;
+    --btn-inc-border-color-active: crimson;
+    --btn-inc-background-color-active: crimson;
+
+    --scrolle-wh: 0;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+::-webkit-scrollbar{
+    background-color: transparent;
+    border: none;
+    display: none;
+}
+
+body {
+    font-family: 'Roboto';
+    user-select: none;
+}
+
+#meter{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    /* transform: translate(-50%, -50%); */
+    /* background-color: black; */
+}
+
+#meter svg #level {
+    stroke-linecap: none;
+    fill: none;
+}
+
+#meter svg #leveloff {
+    stroke-linecap: none;
+    fill: none;
+}
+
+#controller{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background-color: white;
+    box-shadow: 5px 5px 10px rgba(80, 80, 80, 0.3);
+}
+
+#controller #knob{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    background-color: white;
+    /* background-color: brown; */
+    /* transform: rotate(135deg); */
+    transition: 0.5s;
+}
+
+#controller #knob #pointer{
+    position: absolute;    
+    left: 50%;
+    border-radius: 50%;
+    transform: translate(-50%);
+    background-color: red;
+}
+
+#vol-small{
+    position: absolute;
+    font-weight: 900;
+    color: #ddd;
+    /* background-color: rgb(200, 50, 200, 0.5); */
+    width: 100px;
+    height: 100px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    overflow: hidden;
+    
+}
+
+#vol-small .vol{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+#vol-big{
+    position: absolute;
+    font-weight: 900;
+    /* background-color: rgb(200, 50, 200, 0.5); */
+    background-color: white;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+}
+
+#vol-big .vol{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+#buttons{
+    position: absolute;
+    /* left: 50%; */
+}
+
+.button{
+    position: absolute;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border-style: solid;
+    border-width: 1px; 
+    stroke-linecap: round;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+
+    
+}
+#decrease{
+    stroke: var(--btn-dec-stroke);
+    border-color: var(--btn-dec-border-color);
+    background-color: var(--btn-dec-background-color);
+}
+
+#decrease:active{
+    stroke: var(--btn-dec-stroke-active);
+    border-color: var(--btn-dec-border-color-active);
+    background-color: var(--btn-dec-background-color-active);
+}
+#increase{
+    stroke: var(--btn-inc-stroke);
+    border-color: var(--btn-inc-border-color);
+    background-color: var(--btn-inc-background-color);
+}
+
+#increase:active{
+    stroke: var(--btn-inc-stroke-active);
+    border-color: var(--btn-inc-border-color-active);
+    background-color: var(--btn-inc-background-color-active);
+}
+
+#scroll-bar{
+    position: absolute;
+    width: var(--scrolle-wh);
+    height: var(--scrolle-wh);
+    overflow: scroll;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(50, 50, 50, 0.2);
+}
+#scroll-bar .scrolle{
+    width: var(--scrolle-wh);
+    height: var(--scrolle-wh);
+    /* background-color: aqua; */
+}
+
+#touch{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* background-color: rgb(50, 50, 50, 0.3); */
+}
+
+#touch .touches{
+    position: absolute;
+    /* background-color: blue; */
+    transform: translate(-50%, -50%);
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./fonts/Roboto.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body onload="init()">
+    <div id="meter">
+        <svg></svg>
+    </div>
+    <div id="controller">
+        <div id="knob">
+            <div id="pointer"></div>
+        </div>
+        <div id="vol-small"></div>
+        <div id="vol-big"></div>
+    </div>
+    <div id="buttons">
+        <div class="button" id="decrease" onclick="setVolumeButton(vol_current-1)"><svg><path id="path" /></svg></div>
+        <div class="button" id="increase" onclick="setVolumeButton(vol_current+1)"><svg><path id="path" /></svg></div>
+    </div>
+    <div id="touch">
+        <div class="touches" id="t0" onclick="setVolume(parseInt(map(45 * 0, 0, 270, 0, 100)))"></div>
+        <div class="touches" id="t1" onclick="setVolume(parseInt(map(45 * 1, 0, 270, 0, 100)))"></div>
+        <div class="touches" id="t2" onclick="setVolume(parseInt(map(45 * 2, 0, 270, 0, 100)))"></div>
+        <div class="touches" id="t3" onclick="setVolume(parseInt(map(45 * 3, 0, 270, 0, 100)))"></div>
+        <div class="touches" id="t4" onclick="setVolume(parseInt(map(45 * 4, 0, 270, 0, 100)))"></div>
+        <div class="touches" id="t5" onclick="setVolume(parseInt(map(45 * 5, 0, 270, 0, 100)))"></div>
+        <div class="touches" id="t6" onclick="setVolume(parseInt(map(45 * 6, 0, 270, 0, 100)))"></div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="./libs/progressbar.min.js"></script>
+    <script src="./script.js"></script>
+</body>
+
+</html>
