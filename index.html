@@ -22,8 +22,12 @@
         <div id="vol-big"></div>
     </div>
     <div id="buttons">
-        <div class="button" id="decrease" onclick="setVolumeButton(vol_current-1)"><svg><path id="path" /></svg></div>
-        <div class="button" id="increase" onclick="setVolumeButton(vol_current+1)"><svg><path id="path" /></svg></div>
+        <div class="button" id="decrease" onclick="setVolumeButton(vol_current-1)"><svg>
+                <path id="path" />
+            </svg></div>
+        <div class="button" id="increase" onclick="setVolumeButton(vol_current+1)"><svg>
+                <path id="path" />
+            </svg></div>
     </div>
     <div id="touch">
         <div class="touches" id="t0" onclick="setVolume(parseInt(map(45 * 0, 0, 270, 0, 100)))"></div>
@@ -37,6 +41,20 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="./libs/progressbar.min.js"></script>
     <script src="./script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+    <script type="text/javascript" charset="utf-8">
+        var socket = io();
+
+        socket.on('volume-changed', function(data) {
+
+            if (data.state == 'off') {
+                setVolume(0);
+            } else {
+                setVolume(data.level);
+            }
+
+        });
+    </script>
 </body>
 
 </html>
