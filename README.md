@@ -3,6 +3,14 @@
 
 This is a Volume Controller based on Python's Flask Web Framework. Currently, this only works on Linux (Ubuntu) operating system. You can control your computer's volume level through a web browser and also check the volume level in real-time.
 
+## Requirements
+
+### amixer
+You must have [amixer](https://linux.die.net/man/1/amixer) tool installed on your system. Run the following command to check if you've the tool installed.
+```bash
+amixer --version
+```
+
 ## Installation
 
 ### Step 1
