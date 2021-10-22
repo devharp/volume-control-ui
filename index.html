@@ -22,21 +22,21 @@
         <div id="vol-big"></div>
     </div>
     <div id="buttons">
-        <div class="button" id="decrease" onclick="setVolumeButton(vol_current-1)"><svg>
+        <div class="button" id="decrease" onclick="setVolumeButton({via: 'button', num: '1%-'})"><svg>
                 <path id="path" />
             </svg></div>
-        <div class="button" id="increase" onclick="setVolumeButton(vol_current+1)"><svg>
+        <div class="button" id="increase" onclick="setVolumeButton({via: 'button', num: '1%+'})"><svg>
                 <path id="path" />
             </svg></div>
     </div>
     <div id="touch">
-        <div class="touches" id="t0" onclick="setVolume(parseInt(map(45 * 0, 0, 270, 0, 100)))"></div>
-        <div class="touches" id="t1" onclick="setVolume(parseInt(map(45 * 1, 0, 270, 0, 100)))"></div>
-        <div class="touches" id="t2" onclick="setVolume(parseInt(map(45 * 2, 0, 270, 0, 100)))"></div>
-        <div class="touches" id="t3" onclick="setVolume(parseInt(map(45 * 3, 0, 270, 0, 100)))"></div>
-        <div class="touches" id="t4" onclick="setVolume(parseInt(map(45 * 4, 0, 270, 0, 100)))"></div>
-        <div class="touches" id="t5" onclick="setVolume(parseInt(map(45 * 5, 0, 270, 0, 100)))"></div>
-        <div class="touches" id="t6" onclick="setVolume(parseInt(map(45 * 6, 0, 270, 0, 100)))"></div>
+        <div class="touches" id="t0" onclick="setVolumeButton({via: 'touch', num: String(parseInt(map(45 * 0, 0, 270, 0, 100)) + '%')})"></div>
+        <div class="touches" id="t1" onclick="setVolumeButton({via: 'touch', num: String(parseInt(map(45 * 1, 0, 270, 0, 100)) + '%')})"></div>
+        <div class="touches" id="t2" onclick="setVolumeButton({via: 'touch', num: String(parseInt(map(45 * 2, 0, 270, 0, 100)) + '%')})"></div>
+        <div class="touches" id="t3" onclick="setVolumeButton({via: 'touch', num: String(parseInt(map(45 * 3, 0, 270, 0, 100)) + '%')})"></div>
+        <div class="touches" id="t4" onclick="setVolumeButton({via: 'touch', num: String(parseInt(map(45 * 4, 0, 270, 0, 100)) + '%')})"></div>
+        <div class="touches" id="t5" onclick="setVolumeButton({via: 'touch', num: String(parseInt(map(45 * 5, 0, 270, 0, 100)) + '%')})"></div>
+        <div class="touches" id="t6" onclick="setVolumeButton({via: 'touch', num: String(parseInt(map(45 * 6, 0, 270, 0, 100)) + '%')})"></div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="./libs/progressbar.min.js"></script>
@@ -44,6 +44,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
     <script type="text/javascript" charset="utf-8">
         var socket = io();
+
+        function setVolumeButton(payload) {
+
+            socket.emit('change-volume', {
+                num: payload.num
+            });
+            if (payload.via == 'touch') {
+                console.log('triggered via touch');
+            } else if (payload.via == 'button') {
+                console.log('triggered via button');
+            }
+            console.log(payload);
+
+        }
 
         socket.on('volume-changed', function(data) {
 

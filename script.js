@@ -1,7 +1,9 @@
-let win = { w: 0, h: 0 }, meter, svg, path, path_back;
+let win = { w: 0, h: 0 },
+    meter, svg, path, path_back;
 let padding, w;
 let controller, knob, pointer;
-let vol_max = 100, vol_current = 100;
+let vol_max = 100,
+    vol_current = 100;
 let vol = { small: { e: 0, vol: 0 }, big: { e: 0, vol: 0 } };
 let value = { old: 0, new: 0 };
 let button_parent, button, button_path;
@@ -28,7 +30,9 @@ let state = { dec: false, inc: false };
 let rootcss;
 
 function init() {
-    win.w = window.innerWidth; win.h = window.innerHeight; meter = document.getElementById('meter');
+    win.w = window.innerWidth;
+    win.h = window.innerHeight;
+    meter = document.getElementById('meter');
     svg = meter.getElementsByTagName('svg')[0];
     svg.innerHTML = '<defs><clipPath id="clippath"></clipPath></defs>';
     svg.innerHTML += '<path id="leveloff" clip-path="url(#clippath)"/>';
@@ -38,8 +42,7 @@ function init() {
     if (win.w < 600) {
         padding = 12.5;
         w = (200) + (2 * padding);
-    }
-    else {
+    } else {
         padding = 25;
         w = (400) + (2 * padding);
     }
@@ -148,13 +151,10 @@ function placeButtons() {
     button_path[1].setAttribute('d', 'M ' + String((button[0].clientHeight / 2) - (padding / 1.5)) + ' ' + String(button[0].clientHeight / 2) + ' L ' + String((button[0].clientHeight / 2) + (padding / 1.5)) + ' ' + String(button[0].clientHeight / 2) + ' M ' + String(button[0].clientHeight / 2) + ' ' + String((button[0].clientHeight / 2) - (padding / 1.5)) + ' L ' + String(button[0].clientHeight / 2) + ' ' + String((button[0].clientHeight / 2) + (padding / 1.5)));
 
 }
-function setVolumeButton(num) {
-    setVolume(num);
-}
 
 function checkVolumeAndSetButtons() {
     if (vol_current == 0) {
-        
+
         if (!state.dec) {
             rootcss.style.setProperty('--btn-dec-stroke', 'white');
             rootcss.style.setProperty('--btn-dec-stroke-active', 'white');
@@ -172,8 +172,7 @@ function checkVolumeAndSetButtons() {
             state.dec = true;
             state.inc = false;
         }
-    }
-    else if (vol_current == 100) {
+    } else if (vol_current == 100) {
         if (!state.inc) {
             rootcss.style.setProperty('--btn-inc-stroke', 'white');
             rootcss.style.setProperty('--btn-inc-stroke-active', 'white');
@@ -191,8 +190,7 @@ function checkVolumeAndSetButtons() {
             state.dec = false;
             state.inc = true;
         }
-    }
-    else {
+    } else {
         if (state.dec == true) {
             rootcss.style.setProperty('--btn-dec-stroke', '#000');
             rootcss.style.setProperty('--btn-dec-stroke-active', 'white');
@@ -230,7 +228,7 @@ function setTouchButtons() {
         touches[i].style.left = String(r.x) + 'px';
         touches[i].style.top = String(r.y) + 'px';
         angle += 45;
-        if(angle == 360) { angle = 0;}
+        if (angle == 360) { angle = 0; }
     }
 }
 
@@ -246,11 +244,9 @@ function setVolume(num) {
                     let v = Math.round(bar.value() * 100);
                     if (v < range_color.from) {
                         color = 'rgb(' + String(range_color.r.min) + ', ' + String(range_color.g.min) + ', ' + String(range_color.b.min) + ')';
-                    }
-                    else if (v > range_color.to) {
+                    } else if (v > range_color.to) {
                         color = 'rgb(' + String(range_color.r.max) + ', ' + String(range_color.g.max) + ', ' + String(range_color.b.max) + ')';
-                    }
-                    else {
+                    } else {
                         color = 'rgb( ' +
                             String(map(v, 25, 75, range_color.r.min, range_color.r.max)) + ', ' +
                             String(map(v, 25, 75, range_color.g.min, range_color.g.max)) + ', ' +
@@ -273,6 +269,7 @@ function setVolume(num) {
         checkVolumeAndSetButtons();
     }
 }
+
 function getCirclePoints(deg, rad, circle_x, circle_y) {
     let result = { x: 0, y: 0 };
     if (deg == 0) {
@@ -280,60 +277,51 @@ function getCirclePoints(deg, rad, circle_x, circle_y) {
         result.x = circle_x - rad;
         result.y = circle_y;
         return result;
-    }
-    else if (deg < 90) {
+    } else if (deg < 90) {
         // console.log('less than 90');
         deg = 90 - deg;
         result.x = circle_x - (Math.sin((deg * (Math.PI / 180))) * rad);
         result.y = circle_y - (Math.cos((deg * (Math.PI / 180))) * rad);
         return result;
-    }
-    else if (deg == 90) {
+    } else if (deg == 90) {
         // console.log('90');
         result.x = circle_x;
         result.y = circle_y - rad;
         return result;
-    }
-    else if (deg < 180) {
+    } else if (deg < 180) {
         // console.log('less than 180');
         deg = 90 - (180 - deg);
         result.x = circle_x + (Math.sin((deg * (Math.PI / 180))) * rad);
         result.y = circle_y - (Math.cos((deg * (Math.PI / 180))) * rad);
         return result;
-    }
-    else if (deg == 180) {
+    } else if (deg == 180) {
         // console.log('180');
         result.x = circle_x + rad;
         result.y = circle_y;
         return result;
-    }
-    else if (deg < 270) {
+    } else if (deg < 270) {
         // console.log('less than 270');
         deg = 270 - deg;
         result.x = circle_x + (Math.sin((deg * (Math.PI / 180))) * rad);
         result.y = circle_y + (Math.cos((deg * (Math.PI / 180))) * rad);
         return result;
-    }
-    else if (deg == 270) {
+    } else if (deg == 270) {
         // console.log('270');
         result.x = circle_x;
         result.y = circle_y + rad;
         return result;
-    }
-    else if (deg < 360) {
+    } else if (deg < 360) {
         // console.log('less than 360');
         deg = deg - 270;
         result.x = circle_x - (Math.sin((deg * (Math.PI / 180))) * rad);
         result.y = circle_y + (Math.cos((deg * (Math.PI / 180))) * rad);
         return result;
-    }
-    else if (deg == 360) {
+    } else if (deg == 360) {
         // console.log('360');
         result.x = circle_x - rad;
         result.y = circle_y;
         return result;
-    }
-    else {
+    } else {
         console.log('More than 360 Error');
     }
 }

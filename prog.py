@@ -36,6 +36,13 @@ def script():
 def connected(auth):
     print(request.sid + ' connected')
 
+@sockio.on('change-volume')
+def changeVolume(data):
+    
+    print('\nRequest from client to set volume to:' + str(data) + '\n\n')
+    import subprocess
+    subprocess.run(['amixer', 'sset', 'Master', data['num']], stdout=subprocess.PIPE)
+
 def volumeLevelListener():
     import subprocess, re, time
     old_volume = 0
