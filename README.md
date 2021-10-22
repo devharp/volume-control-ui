@@ -1,23 +1,32 @@
 ![ui.jpg here](https://github.com/devharp/volume-control-ui/raw/master/ui.jpg)
-### हिंदी
-# ध्वनि नियंत्रक उपयोगकर्ता इंटरफ़ेस (UI) बनावट
+# Volume Controller
 
-## वर्णन
+This is a Volume Controller based on Python's Flask Web Framework. Currently, this only works on Linux (Ubuntu) operating system. You can control your computer's volume level through a web browser and also check the volume level in real-time.
 
-ध्वनि को नियंत्रित करने के लिए यह केवल एक UI डिज़ाइन है
+## Installation
 
-## उपयोग करने का तरीका
+### Step 1
+Download this project and go to the project's directory.
+```bash
+git clone "https://github.com/devharp/volume-control-ui.git" && cd volume-control-ui
+```
 
-अपने पसंदीदा ब्राउज़र में __index.html__ खोलें
+### Step 2
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install the required packages.
 
-### English
-# Volume Controller (UI Design)
-
-## Description
-
-This is a UI design (only) for controlling the volume
+```bash
+pip3 install -r requirements.txt
+```
 
 ## Usage
 
-open the __index.html__ in your favourite browser
+Use the following command to run the app
 
+```bash
+python3 prog.py
+```
+Open this link in a Web browser
+![github-prog-example.jpg here](https://github.com/devharp/volume-control-ui/raw/master/github-prog-example.jpg)
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
